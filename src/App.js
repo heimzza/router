@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link, NavLink } from 'react-router-dom'
 
 class App extends Component {
   render () {
     return (
       <Router>
+        <Link to="/">Anasayfa</Link><br />
+        <Link to="/iletisim">İletişim</Link><br />
+        <Link to="/news/5">Yeni sayfa</Link><br />
           <Routes>
-            <Route exact path="/" element={<Home/>}/>
-            <Route exact strict path="/iletisim" element={<Iletisim/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/iletisim" element={<Iletisim/>}/>
+            <Route path="/news/:id" element={<News/>}/>
           </Routes>
       </Router>
     );
   }
+}
+
+function News({match}) {
+  return(<h1>News:{match.params.id}</h1>);
 }
 
 function Home() {
