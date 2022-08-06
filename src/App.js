@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Routes, Link, NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link, NavLink, useParams } from 'react-router-dom'
 
 class App extends Component {
   render () {
     return (
       <Router>
-        <Link to="/">Anasayfa</Link><br />
-        <Link to="/iletisim">İletişim</Link><br />
-        <Link to="/news/5">Yeni sayfa</Link><br />
+        <NavLink style={{color:'blue'}} to="/">Anasayfa</NavLink><br />
+        <NavLink style={{textShadow:'-1px 1px 10px rgba(0, 0, 0, 0.75'}} to="/iletisim">İletişim</NavLink><br />
+        <NavLink style={{textDecorationLine: 'underline'}} to="/news/5">Yeni sayfa</NavLink><br />
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/iletisim" element={<Iletisim/>}/>
@@ -19,7 +19,8 @@ class App extends Component {
 }
 
 function News({match}) {
-  return(<h1>News:{match.params.id}</h1>);
+  let { id } = useParams();
+  return(<h2>News:{id}</h2>);
 }
 
 function Home() {
