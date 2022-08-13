@@ -25,20 +25,25 @@ class App extends Component {
             <Route path="/news/:id" element={<News/>}/>
             <Route path="/profile" element={
             this.state.loggendIn ? (<Profile/>) : (<Navigate to="/" />)}/>
+            <Route path='*' element={<Error/>}/>
+
           </Routes>
       </Router>
     );
   }
 }
 
-function News({match}) {
+function News() {
   let { id } = useParams();
   return(<h2>News:{id}</h2>);
 }
 
-function Profile({match}) {
-  let { id } = useParams();
+function Profile() {
   return(<h2>Profiles</h2>);
+}
+
+function Error() {
+  return(<h2>404 Not Found</h2>);
 }
 
 function Home() {
